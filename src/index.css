@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  background: url(../src/assets/bg-image.jpg) no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  backdrop-filter: brightness(0.5) blur(20px);
+  padding: 16px;
+  overflow: hidden;
+  color: #fff;
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+.sidebar nav::-webkit-scrollbar-thumb {
+  background-color: rgba(226, 235, 237, 0.23);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(32, 53, 85, 0.5);
+  position: relative;
+  right: -10px;
+}
+
+.sidebar nav::-webkit-scrollbar-track {
+  background-color: rgba(32, 53, 85, 0.2);
+}
+
+.sidebar nav::-webkit-scrollbar {
+  width: 0;
+}
+
+.sidebar:hover nav::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar nav {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.sidebar:hover nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(226, 235, 237, 0.2) rgba(32, 53, 85, 0.2);
+}
+
+.main {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(32, 53, 85, 0.5);
+}
+
+.red {
+  color: #fc1503;
+}
+
+.backdrop {
+  visibility: hidden;
+}
+
+div.form-wrapper {
+  display: flex;
+  background-color: #171e2c;
+  box-shadow: none;
+  border-radius: 2;
+  border-bottom: 1px solid transparent;
+  flex: 1;
+}
+
+div.form-wrapper:has(input:focus) {
+  border-bottom: 1px solid #35517c;
+}
+
+.form-wrapper label {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+#search-input {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.react-player {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100% !important;
+}
+
+.channel-header {
+  height: 150px;
+  border-radius: 16px;
+  background-image: url(../src/assets/header-image.jpg);
+  background-position: center left;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.channel-header::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(8px);
+}
+
+.video-item {
+  transition: 0.5s;
+}
+
+.video-item:hover {
+  translate: 0 -3px;
+}
+
+.ellipsis {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.copyright {
+  background-color: #2a2e3e;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.MuiTooltip-popper[data-popper-placement*="left"] .MuiTooltip-tooltip {
+  background-color: #192e47;
+}
+
+.MuiTooltip-popper[data-popper-placement*="left"] .MuiTooltip-arrow {
+  color: #192e47;
+}
+
+@media screen and (max-width: 1199px) and (min-width: 600px) {
+  .copyright {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  div.sidemenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 15;
+    border-radius: 0;
+    border: 1px solid rgb(255, 255, 255, 0.15);
+    background-color: transparent;
+    backdrop-filter: brightness(0.4);
+  }
+
+  div.sidemenu .sidebar {
+    background-color: #78adff3d;
+  }
+
+  .sidemenu.hidden .backdrop,
+  .hidden {
+    visibility: hidden;
+    transition: 0.2s ease-in-out;
+  }
+
+  .sidemenu.shown .backdrop {
+    visibility: visible;
+  }
+
+  .sidemenu .sidebar {
+    position: relative;
+    border-radius: unset;
+    height: 100vh;
+    backdrop-filter: blur(15px);
+    width: 75%;
+    transition: 0.2s ease-in-out;
+    border-right: 1px solid rgb(255, 255, 255, 0.15);
+  }
+
+  .sidemenu.hidden .sidebar {
+    left: -100%;
+  }
+
+  .sidemenu.shown .sidebar {
+    left: 0;
+  }
+
+  .sidemenu button {
+    padding-left: 24px;
+  }
+  .sidemenu .sidebar a {
+    padding-left: 16px;
+  }
+
+  .sidemenu .MuiTypography-body1 {
+    visibility: visible;
+  }
+
+  .backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+  }
+
+  .copyright {
+    background-color: #1e2c43;
+  }
+}
