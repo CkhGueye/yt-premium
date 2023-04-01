@@ -12,7 +12,8 @@ const Searchbar = ({ handleMenu }) => {
     e.preventDefault();
 
     if (searchTerm) {
-      navigate(`/search/${searchTerm}`);
+      const encodedTerm = encodeURIComponent(searchTerm);
+      navigate(`/search/${encodedTerm}`);
     }
   };
 
@@ -34,7 +35,7 @@ const Searchbar = ({ handleMenu }) => {
       <Box
         component="form"
         onSubmit={handleSubmit}
-        autocomplete="off"
+        autoComplete="off"
         sx={{
           flex: 1,
           display: "flex",

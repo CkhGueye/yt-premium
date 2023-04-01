@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { categories } from "../utils/categoriesList";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const SidebarWrapper = styled(Box)({
   overflowY: "auto",
@@ -17,11 +18,11 @@ const ButtonNav = styled(Button)({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
+  borderBlock: "1px solid transparent",
   borderRadius: 0,
   color: "rgb(255,255,255,0.8)",
   padding: "9px 19px",
-  textTransform: "unset",
-  borderBlock: "1px solid transparent",
+  textTransform: "capitalize",
   minWidth: "unset",
   width: "100%",
   "&.active, &:hover": {
@@ -38,18 +39,18 @@ const StyledStack = styled(Stack)({
   height: "100%",
 });
 
-const Categories = ({
-  handleMenu,
-  showMenu,
-  selectedCategory,
-  setSelectedCategory,
-  setShowMenu,
-}) => {
+const Categories = ({ handleMenu, showMenu, setShowMenu }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const currentPath = pathname.split("/")[2];
+
+  const [category, setCategory] = useState(currentPath ? currentPath : "home");
+
   const handleClick = (categoryName) => {
-    navigate("/");
+    navigate(categoryName === "home" ? "/" : `/category/${categoryName}`);
     setShowMenu(false);
-    setSelectedCategory(categoryName);
+    setCategory(categoryName);
   };
 
   return (
@@ -69,7 +70,8 @@ const Categories = ({
         >
           <Link
             to="/"
-            onClick={() => handleClick("Home")}
+            aria-label="Go to Home"
+            onClick={() => handleClick("home")}
             style={{
               display: "flex",
               alignItems: "center",
@@ -95,18 +97,19 @@ const Categories = ({
           </Link>
         </Box>
         <Box component="nav" sx={{ flex: 1 }} arial-label="Main menu">
-          {categories.map((category) => (
+          {categories.map((item) => (
             <ButtonNav
-              className={`${category.name === selectedCategory && "active"}`}
-              onClick={() => handleClick(category.name)}
-              key={category.name}
-              startIcon={category.icon}
+              className={`${item.name === category && "active"}`}
+              onClick={() => handleClick(item.name)}
+              key={item.name}
+              startIcon={item.icon}
+              aria-label={item.name}
             >
               <Typography
                 component="span"
                 sx={{ visibility: { xs: "hidden", lg: "visible" } }}
               >
-                {category.name}
+                {item.name}
               </Typography>
             </ButtonNav>
           ))}

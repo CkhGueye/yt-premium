@@ -11,16 +11,12 @@ const Channel = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchResults = async () => {
-      const data = await customFetch(`channels?part=snippet&id=${id}`);
-      setChannelDetail(data?.items[0]);
-      const videosData = await customFetch(
-        `search?channelId=${id}&part=snippet%2Cid&order=date`
-      );
-      setVideos(videosData?.items);
-    };
-
-    fetchResults();
+    customFetch(`channels?part=snippet&id=${id}`).then((data) =>
+      setChannelDetail(data?.items[0])
+    );
+    customFetch(`search?channelId=${id}&part=snippet%2Cid&order=date`).then(
+      (data) => setVideos(data?.items)
+    );
   }, [id]);
 
   if (!channelDetail) return <Loader />;

@@ -1,6 +1,6 @@
 import { Avatar, Stack, Tooltip } from "@mui/material";
 import avatar from "../assets/avatar.jpg";
-import Searchbar from "./Searchbar";
+import { Searchbar } from "../components";
 
 const Header = ({ handleMenu }) => (
   <Stack
