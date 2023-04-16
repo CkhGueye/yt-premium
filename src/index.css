@@ -136,7 +136,7 @@ div.form-wrapper:has(input:focus) {
   position: absolute;
   height: 100%;
   width: 100%;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(2px);
 }
 
 .video-item {
@@ -144,10 +144,10 @@ div.form-wrapper:has(input:focus) {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  div:hover > .video-item {
-    opacity: 0.6;
+  div:has(.video-item:hover) .video-item {
+    opacity: 0.8;
   }
-  div > .video-item:hover {
+  div.video-grid > .video-item:hover {
     translate: 0 -3px;
     opacity: 1;
   }

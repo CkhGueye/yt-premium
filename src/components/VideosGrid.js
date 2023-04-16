@@ -10,6 +10,7 @@ const VideosGrid = ({ videos }) => {
         gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
       }}
       gap={2}
+      className="video-grid"
     >
       {videos.map(
         (item, idx) =>
